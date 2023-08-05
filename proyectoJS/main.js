@@ -1,6 +1,26 @@
 
 let signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
+
+for (;;) {
+  signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
+  if (!isNaN(signoUsuario)) {
+    alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
+  } else {
+    break; // Salimos del bucle si la entrada es válida (no es un número)
+  }
+}
+
 let signoPareja = prompt("Ingresa el signo del zodiaco de tu pareja (en minúsculas):");
+
+// Pedimos al usuario que ingrese el signo del zodiaco de su pareja (en minúsculas) hasta que sea válido
+for (;;) {
+  signoPareja = prompt("Ingresa el signo del zodiaco de tu pareja (en minúsculas):");
+  if (!isNaN(signoPareja)) {
+    alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
+  } else {
+    break; // Salimos del bucle si la entrada es válida (no es un número)
+  }
+}
 
 // Utilizamos un switch para determinar si los signos son compatibles
 switch (signoUsuario) {
