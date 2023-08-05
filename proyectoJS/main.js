@@ -1,5 +1,5 @@
 
-let signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
+let signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas): XD LOL");
 
 for (;;) {
   signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
