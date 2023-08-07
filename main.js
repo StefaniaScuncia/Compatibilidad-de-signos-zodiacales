@@ -1,6 +1,4 @@
 
-let signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas): XD LOL");
-
 for (;;) {
   signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
   if (!isNaN(signoUsuario)) {
@@ -9,8 +7,6 @@ for (;;) {
     break; // Salimos del bucle si la entrada es válida (no es un número)
   }
 }
-
-let signoPareja = prompt("Ingresa el signo del zodiaco de tu pareja (en minúsculas):");
 
 // Pedimos al usuario que ingrese el signo del zodiaco de su pareja (en minúsculas) hasta que sea válido
 for (;;) {
