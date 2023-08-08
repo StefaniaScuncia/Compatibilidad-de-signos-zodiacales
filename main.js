@@ -7,22 +7,26 @@ let ingreso2= prompt ("Ingresa el nombre de tu pareja")
 
 saludoUsuario(ingreso, ingreso2)
 
+function contieneSoloLetras(cadena) {
+  return /^[a-zA-Z]+$/.test(cadena);
+}
+
 for (;;) {
   signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
-  if (!isNaN(signoUsuario)) {
-    alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
-  } else {
+  if (contieneSoloLetras(signoUsuario)) {
     break;
+  } else {
+    alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
   }
 }
 
 
 for (;;) {
   signoPareja = prompt("Ingresa el signo del zodiaco de " + ingreso2 + " (en minúsculas):");
-  if (!isNaN(signoPareja)) {
-    alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
-  } else {
+  if (contieneSoloLetras(signoPareja)) {
     break;
+  } else {
+    alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
   }
 }
 
@@ -46,7 +50,7 @@ function verificarCompatibilidad(signoUsuario, signoPareja) {
         default:
           return false;
       }
-    case "cáncer":
+    case "cancer":
       switch (signoPareja) {
         case "virgo":
         case "escorpio":
@@ -57,7 +61,7 @@ function verificarCompatibilidad(signoUsuario, signoPareja) {
       }
     case "aries":
       switch (signoPareja) {
-        case "géminis":
+        case "geminis":
         case "acuario":
         case "leo":
         case "tauro":
@@ -75,7 +79,7 @@ function verificarCompatibilidad(signoUsuario, signoPareja) {
       }
     case "piscis":
       switch (signoPareja) {
-        case "géminis":
+        case "geminis":
         case "sagitario":
         case "leo":
           return true;
@@ -93,14 +97,14 @@ function verificarCompatibilidad(signoUsuario, signoPareja) {
       }
     case "virgo":
       switch (signoPareja) {
-        case "cáncer":
+        case "cancer":
         case "tauro":
         case "capricornio":
           return true;
         default:
           return false;
       }
-    case "géminis":
+    case "geminis":
       switch (signoPareja) {
         case "acuario":
         case "libra":
@@ -111,14 +115,14 @@ function verificarCompatibilidad(signoUsuario, signoPareja) {
     case "acuario":
       switch (signoPareja) {
         case "cáncer":
-        case "tauro":
+        case "geminis":
           return true;
         default:
           return false;
       }
     case "escorpio":
       switch (signoPareja) {
-        case "cáncer":
+        case "cancer":
         case "piscis":
         case "capricornio":
           return true;
