@@ -15,7 +15,7 @@ const LoadData = () => {
     return /^[a-zA-Z]+$/.test(cadena);
   }
 
-  for (; ;) {
+  /*for (; ;) {
     signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
     if (contieneSoloLetras(signoUsuario)) {
       break;
@@ -29,6 +29,36 @@ const LoadData = () => {
     signoPareja = prompt("Ingresa el signo del zodiaco de " + ingreso2 + " (en minúsculas):");
     if (contieneSoloLetras(signoPareja)) {
       break;
+    } else {
+      alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
+    }
+  }*/
+  
+  let signoUsuario;
+  while (true) {
+    signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
+    if (contieneSoloLetras(signoUsuario)) {
+      const signosValidos = ["aries", "geminis", "tauro", "cancer", "libra", "virgo", "capricornio", "escorpio", "sagitario", "acuario", "piscis", "leo"];
+      if (signosValidos.includes(signoUsuario)) {
+        break;
+      } else {
+        alert("Signo no reconocido. Por favor, ingresa un signo válido.");
+      }
+    } else {
+      alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
+    }
+  }
+
+  let signoPareja;
+  while (true) {
+    signoPareja = prompt("Ingresa el signo del zodiaco de " + ingreso2 + " (en minúsculas):");
+    if (contieneSoloLetras(signoPareja)) {
+      const signosValidos = ["aries", "geminis", "tauro", "cancer", "libra", "virgo", "capricornio", "escorpio", "sagitario", "acuario", "piscis", "leo"];
+      if (signosValidos.includes(signoPareja)) {
+        break;
+      } else {
+        alert("Signo no reconocido. Por favor, ingresa un signo válido.");
+      }
     } else {
       alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
     }
