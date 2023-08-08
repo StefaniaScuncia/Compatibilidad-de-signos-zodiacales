@@ -3,11 +3,22 @@ body {
     font-family: 'Titillium Web', sans-serif;
 }
 
-h1 {
-
-    color: beige
+.intro {
+    align-items: center;
 }
 
-p {
+h1 {
+text-align: center;
     color: beige;
+    font-weight: 700;
+    font-size: 80px;
+
+}
+
+h3 {
+    color: beige;
+    text-align: justify;
+    margin-right: 10%;
+    margin-left: 10%;
+    font-style: italic;
 }
