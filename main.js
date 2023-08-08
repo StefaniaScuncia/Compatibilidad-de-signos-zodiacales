@@ -15,25 +15,6 @@ const LoadData = () => {
     return /^[a-zA-Z]+$/.test(cadena);
   }
 
-  /*for (; ;) {
-    signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
-    if (contieneSoloLetras(signoUsuario)) {
-      break;
-    } else {
-      alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
-    }
-  }
-
-
-  for (; ;) {
-    signoPareja = prompt("Ingresa el signo del zodiaco de " + ingreso2 + " (en minúsculas):");
-    if (contieneSoloLetras(signoPareja)) {
-      break;
-    } else {
-      alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
-    }
-  }*/
-  
   let signoUsuario;
   while (true) {
     signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
@@ -175,7 +156,7 @@ const LoadData = () => {
         return false;
     }
   }
-  
+
   if (verificarCompatibilidad(signoUsuario, signoPareja)) {
     alert("¡Felicidades, " + ingreso + ", vos y " + ingreso2 + " son compatibles!");
   } else {
