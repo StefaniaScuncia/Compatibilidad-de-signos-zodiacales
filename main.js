@@ -28,18 +28,44 @@ const LoadData = () => {
     return "";
   }
 
+  function obtenerFechaValida(mensaje) {
+    let fecha;
+    const fechaRegex = /^\d{4}-\d{2}-\d{2}$/; 
+  
+    while (true) {
+      fecha = prompt(mensaje);
+  
+      if (!fechaRegex.test(fecha)) {
+        alert("Fecha no válida. Por favor, ingresa una fecha en el formato correcto (YYYY-MM-DD).");
+        continue;
+      }
+  
+      const fechaNacimiento = new Date(fecha);
+      
+      if (!isNaN(fechaNacimiento.getDate())) {
+        break; 
+      } else {
+        alert("Fecha no válida. Por favor, ingresa una fecha válida.");
+      }
+    }
+    return fecha;
+  }
+  
   let ingreso = prompt("Ingresa tu nombre");
   let ingreso2 = prompt("Ingresa el nombre de tu pareja");
   saludoUsuario(ingreso, ingreso2);
-
-  let signoUsuario = obtenerSignoPorFecha(prompt("Ingresa tu fecha de nacimiento (YYYY-MM-DD):"));
-  let signoPareja = obtenerSignoPorFecha(prompt(`Ingresa la fecha de nacimiento de ${ingreso2} (YYYY-MM-DD):`));
-
+  
+  let fechaUsuario = obtenerFechaValida("Ingresa tu fecha de nacimiento (YYYY-MM-DD):");
+  let fechaPareja = obtenerFechaValida(`Ingresa la fecha de nacimiento de ${ingreso2} (YYYY-MM-DD):`);
+  
+  let signoUsuario = obtenerSignoPorFecha(fechaUsuario);
+  let signoPareja = obtenerSignoPorFecha(fechaPareja);
+  
   function verificarCompatibilidad(signoUsuario, signoPareja) {
     const compatibilidades = {
       capricornio: ["tauro", "virgo", "escorpio"],
       leo: ["libra", "sagitario", "aries"],
-      cancer: ["virgo", "escorpio", "tauro"],
+      cancer: ["virgo", "acuario", "tauro"],
       aries: ["geminis", "acuario", "leo", "tauro"],
       libra: ["leo", "sagitario"],
       piscis: ["geminis", "sagitario", "leo"],
