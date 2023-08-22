@@ -1,166 +1,65 @@
 window.onload = () => {
-  LoadData()
-}
+  LoadData();
+};
 
 const LoadData = () => {
   function saludoUsuario(nombre, nombrePareja) {
-    alert("Bienvenido/a " + nombre + ", continuemos para ver si vos y " + nombrePareja + " son compatibles");
+    alert(`Bienvenido/a ${nombre}, continuemos para ver si vos y ${nombrePareja} son compatibles`);
+  }
+
+  function obtenerSignoPorFecha(fecha) {
+    const fechaNacimiento = new Date(fecha);
+    const mes = fechaNacimiento.getMonth() + 1;
+    const dia = fechaNacimiento.getDate();
+
+    if ((mes === 3 && dia >= 21) || (mes === 4 && dia <= 19)) return "aries";
+    if ((mes === 4 && dia >= 20) || (mes === 5 && dia <= 20)) return "tauro";
+    if ((mes === 5 && dia >= 21) || (mes === 6 && dia <= 20)) return "geminis";
+    if ((mes === 6 && dia >= 21) || (mes === 7 && dia <= 22)) return "cancer";
+    if ((mes === 7 && dia >= 23) || (mes === 8 && dia <= 23)) return "leo";
+    if ((mes === 8 && dia >= 24) || (mes === 9 && dia <= 22)) return "virgo";
+    if ((mes === 9 && dia >= 23) || (mes === 10 && dia <= 23)) return "libra";
+    if ((mes === 10 && dia >= 24) || (mes === 11 && dia <= 22)) return "escorpio";
+    if ((mes === 11 && dia >= 23) || (mes === 12 && dia <= 21)) return "sagitario";
+    if ((mes === 12 && dia >= 22) || (mes === 1 && dia <= 20)) return "capricornio";
+    if ((mes === 1 && dia >= 21) || (mes === 2 && dia <= 19)) return "acuario";
+    if ((mes === 2 && dia >= 20) || (mes === 3 && dia <= 20)) return "piscis";
+
+    return "";
   }
 
   let ingreso = prompt("Ingresa tu nombre");
   let ingreso2 = prompt("Ingresa el nombre de tu pareja");
   saludoUsuario(ingreso, ingreso2);
 
-  function contieneSoloLetras(cadena) {
-    return /^[a-zA-Z]+$/.test(cadena);
-  }
-
-  let signoUsuario;
-  while (true) {
-    signoUsuario = prompt("Ingresa tu signo del zodiaco (en minúsculas):");
-    if (contieneSoloLetras(signoUsuario)) {
-      const signosValidos = ["aries", "geminis", "tauro", "cancer", "libra", "virgo", "capricornio", "escorpio", "sagitario", "acuario", "piscis", "leo"];
-      if (signosValidos.includes(signoUsuario)) {
-        break;
-      } else {
-        alert("Signo no reconocido. Por favor, ingresa un signo válido.");
-      }
-    } else {
-      alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
-    }
-  }
-
-  let signoPareja;
-  while (true) {
-    signoPareja = prompt("Ingresa el signo del zodiaco de " + ingreso2 + " (en minúsculas):");
-    if (contieneSoloLetras(signoPareja)) {
-      const signosValidos = ["aries", "geminis", "tauro", "cancer", "libra", "virgo", "capricornio", "escorpio", "sagitario", "acuario", "piscis", "leo"];
-      if (signosValidos.includes(signoPareja)) {
-        break;
-      } else {
-        alert("Signo no reconocido. Por favor, ingresa un signo válido.");
-      }
-    } else {
-      alert("Por favor, ingresa solo letras, sin números ni caracteres especiales.");
-    }
-  }
+  let signoUsuario = obtenerSignoPorFecha(prompt("Ingresa tu fecha de nacimiento (YYYY-MM-DD):"));
+  let signoPareja = obtenerSignoPorFecha(prompt(`Ingresa la fecha de nacimiento de ${ingreso2} (YYYY-MM-DD):`));
 
   function verificarCompatibilidad(signoUsuario, signoPareja) {
-    switch (signoUsuario) {
-      case "capricornio":
-        switch (signoPareja) {
-          case "tauro":
-          case "virgo":
-          case "escorpio":
-            return true;
-          default:
-            return false;
-        }
-      case "leo":
-        switch (signoPareja) {
-          case "libra":
-          case "sagitario":
-          case "aries":
-            return true;
-          default:
-            return false;
-        }
-      case "cancer":
-        switch (signoPareja) {
-          case "virgo":
-          case "escorpio":
-          case "tauro":
-            return true;
-          default:
-            return false;
-        }
-      case "aries":
-        switch (signoPareja) {
-          case "geminis":
-          case "acuario":
-          case "leo":
-          case "tauro":
-            return true;
-          default:
-            return false;
-        }
-      case "libra":
-        switch (signoPareja) {
-          case "leo":
-          case "sagitario":
-            return true;
-          default:
-            return false;
-        }
-      case "piscis":
-        switch (signoPareja) {
-          case "geminis":
-          case "sagitario":
-          case "leo":
-            return true;
-          default:
-            return false;
-        }
-      case "tauro":
-        switch (signoPareja) {
-          case "capricornio":
-          case "piscis":
-          case "virgo":
-            return true;
-          default:
-            return false;
-        }
-      case "virgo":
-        switch (signoPareja) {
-          case "cancer":
-          case "tauro":
-          case "capricornio":
-            return true;
-          default:
-            return false;
-        }
-      case "geminis":
-        switch (signoPareja) {
-          case "acuario":
-          case "libra":
-            return true;
-          default:
-            return false;
-        }
-      case "acuario":
-        switch (signoPareja) {
-          case "cáncer":
-          case "geminis":
-            return true;
-          default:
-            return false;
-        }
-      case "escorpio":
-        switch (signoPareja) {
-          case "cancer":
-          case "piscis":
-          case "capricornio":
-            return true;
-          default:
-            return false;
-        }
-      case "sagitario":
-        switch (signoPareja) {
-          case "acuario":
-          case "libra":
-            return true;
-          default:
-            return false;
-        }
-      default:
-        return false;
-    }
+    const compatibilidades = {
+      capricornio: ["tauro", "virgo", "escorpio"],
+      leo: ["libra", "sagitario", "aries"],
+      cancer: ["virgo", "escorpio", "tauro"],
+      aries: ["geminis", "acuario", "leo", "tauro"],
+      libra: ["leo", "sagitario"],
+      piscis: ["geminis", "sagitario", "leo"],
+      tauro: ["capricornio", "piscis", "virgo"],
+      virgo: ["cancer", "tauro", "capricornio"],
+      geminis: ["acuario", "libra"],
+      acuario: ["cancer", "geminis"],
+      escorpio: ["cancer", "piscis", "capricornio"],
+      sagitario: ["acuario", "libra"],
+    };
+
+    return compatibilidades[signoUsuario]?.includes(signoPareja) || false;
   }
 
+  let mensajeCompatibilidad;
   if (verificarCompatibilidad(signoUsuario, signoPareja)) {
-    alert("¡Felicidades, " + ingreso + ", vos y " + ingreso2 + " son compatibles!");
+    mensajeCompatibilidad = `¡Felicidades, ${ingreso}, vos y ${ingreso2} son compatibles! Los signos (${signoUsuario}) y (${signoPareja}) tienen un alto nivel de compatibilidad.`;
   } else {
-    alert(ingreso + ", lamentamos informarte que vos y " + ingreso2 + " no son compatibles.");
+    mensajeCompatibilidad = `${ingreso}, lamentamos informarte que vos y ${ingreso2} no son compatibles. Los signos de (${signoUsuario}) y (${signoPareja}) no son compatibles.`;
   }
 
-}
+  alert(mensajeCompatibilidad);
+};
