@@ -1,13 +1,38 @@
-window.onload = () => {
-  LoadData();
-};
+class SignosCompatibles {
+  findCompatibilidad(signoBuscado) {
+    const compatibilidadEncontrada = Object.entries(this.compatibilidades).find(([signo, compatibles]) => {
+      return signo === signoBuscado;
+    });
 
-const LoadData = () => {
-  function saludoUsuario(nombre, nombrePareja) {
+    if (compatibilidadEncontrada) {
+      const [signo, compatibles] = compatibilidadEncontrada;
+      return compatibles;
+    }
+
+    return [];
+  }
+  constructor() {
+    this.compatibilidades = {
+      capricornio: ["tauro", "virgo", "escorpio"],
+      leo: ["libra", "sagitario", "aries"],
+      cancer: ["virgo", "escorpio", "tauro"],
+      aries: ["geminis", "acuario", "leo", "tauro"],
+      libra: ["leo", "sagitario"],
+      piscis: ["geminis", "sagitario", "leo"],
+      tauro: ["capricornio", "piscis", "virgo"],
+      virgo: ["cancer", "tauro", "capricornio"],
+      geminis: ["acuario", "libra"],
+      acuario: ["cancer", "geminis"],
+      escorpio: ["cancer", "piscis", "capricornio"],
+      sagitario: ["acuario", "libra"],
+    };
+  }
+
+  saludoUsuario(nombre, nombrePareja) {
     alert(`Bienvenido/a ${nombre}, continuemos para ver si vos y ${nombrePareja} son compatibles`);
   }
 
-  function obtenerSignoPorFecha(fecha) {
+  obtenerSignoPorFecha(fecha) {
     const fechaNacimiento = new Date(fecha);
     const mes = fechaNacimiento.getMonth() + 1;
     const dia = fechaNacimiento.getDate();
@@ -28,64 +53,67 @@ const LoadData = () => {
     return "";
   }
 
-  function obtenerFechaValida(mensaje) {
+  obtenerFechaValida(mensaje) {
     let fecha;
-    const fechaRegex = /^\d{4}-\d{2}-\d{2}$/; 
-  
+    const fechaRegex = /^\d{4}-\d{2}-\d{2}$/;
+
     while (true) {
       fecha = prompt(mensaje);
-  
+
       if (!fechaRegex.test(fecha)) {
         alert("Fecha no válida. Por favor, ingresa una fecha en el formato correcto (YYYY-MM-DD).");
         continue;
       }
-  
+
       const fechaNacimiento = new Date(fecha);
-      
+
       if (!isNaN(fechaNacimiento.getDate())) {
-        break; 
+        break;
       } else {
         alert("Fecha no válida. Por favor, ingresa una fecha válida.");
       }
     }
     return fecha;
   }
-  
-  let ingreso = prompt("Ingresa tu nombre");
-  let ingreso2 = prompt("Ingresa el nombre de tu pareja");
-  saludoUsuario(ingreso, ingreso2);
-  
-  let fechaUsuario = obtenerFechaValida("Ingresa tu fecha de nacimiento (YYYY-MM-DD):");
-  let fechaPareja = obtenerFechaValida(`Ingresa la fecha de nacimiento de ${ingreso2} (YYYY-MM-DD):`);
-  
-  let signoUsuario = obtenerSignoPorFecha(fechaUsuario);
-  let signoPareja = obtenerSignoPorFecha(fechaPareja);
-  
-  function verificarCompatibilidad(signoUsuario, signoPareja) {
-    const compatibilidades = {
-      capricornio: ["tauro", "virgo", "escorpio"],
-      leo: ["libra", "sagitario", "aries"],
-      cancer: ["virgo", "acuario", "tauro"],
-      aries: ["geminis", "acuario", "leo", "tauro"],
-      libra: ["leo", "sagitario"],
-      piscis: ["geminis", "sagitario", "leo"],
-      tauro: ["capricornio", "piscis", "virgo"],
-      virgo: ["cancer", "tauro", "capricornio"],
-      geminis: ["acuario", "libra"],
-      acuario: ["cancer", "geminis"],
-      escorpio: ["cancer", "piscis", "capricornio"],
-      sagitario: ["acuario", "libra"],
-    };
 
-    return compatibilidades[signoUsuario]?.includes(signoPareja) || false;
+  verificarCompatibilidad(signoUsuario, signoPareja) {
+    return this.compatibilidades[signoUsuario]?.includes(signoPareja) || false;
   }
 
-  let mensajeCompatibilidad;
-  if (verificarCompatibilidad(signoUsuario, signoPareja)) {
-    mensajeCompatibilidad = `¡Felicidades, ${ingreso}, vos y ${ingreso2} son compatibles! Los signos (${signoUsuario}) y (${signoPareja}) tienen un alto nivel de compatibilidad.`;
-  } else {
-    mensajeCompatibilidad = `${ingreso}, lamentamos informarte que vos y ${ingreso2} no son compatibles. Los signos de (${signoUsuario}) y (${signoPareja}) no son compatibles.`;
-  }
+  calcularCompatibilidad() {
+    let ingreso = prompt("Ingresa tu nombre");
+    let ingreso2 = prompt("Ingresa el nombre de tu pareja");
+    this.saludoUsuario(ingreso, ingreso2);
+  
+    let fechaUsuario = this.obtenerFechaValida("Ingresa tu fecha de nacimiento (YYYY-MM-DD):");
+    let fechaPareja = this.obtenerFechaValida(`Ingresa la fecha de nacimiento de ${ingreso2} (YYYY-MM-DD):`);
+  
+    let signoUsuario = this.obtenerSignoPorFecha(fechaUsuario);
+    let signoPareja = this.obtenerSignoPorFecha(fechaPareja);
+  
+    let compatiblesUsuario = this.findCompatibilidad(signoUsuario);
+    let compatiblesPareja = this.findCompatibilidad(signoPareja);
 
-  alert(mensajeCompatibilidad);
+    let mensajeCompatibilidad;
+    if (this.verificarCompatibilidad(signoUsuario, signoPareja)) {
+      mensajeCompatibilidad = `¡Felicidades, ${ingreso}, vos y ${ingreso2} son compatibles! Los signos (${signoUsuario}) y (${signoPareja}) tienen un alto nivel de compatibilidad.`;
+    } else {
+      mensajeCompatibilidad = `${ingreso}, lamentamos informarte que vos y ${ingreso2} no son compatibles. Los signos de (${signoUsuario}) y (${signoPareja}) no son compatibles.`;
+  
+      if (compatiblesUsuario.length > 0) {
+        mensajeCompatibilidad += `\nTus compatibles son: ${compatiblesUsuario.join(", ")}`;
+      }
+  
+      if (compatiblesPareja.length > 0) {
+        mensajeCompatibilidad += `\nCompatibles de ${ingreso2} son: ${compatiblesPareja.join(", ")}`;
+      }
+    }
+  
+    alert(mensajeCompatibilidad);
+  }
+}
+
+const signosCompatibles = new SignosCompatibles();
+window.onload = () => {
+  signosCompatibles.calcularCompatibilidad();
 };
