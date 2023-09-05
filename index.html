@@ -16,7 +16,6 @@
 <body>
     <div class="intro">
         <h1>Compatibilidad de signos</h1>
-
         <h3>"La astrología, en su acepción más amplia, es un conjunto de tradiciones y creencias que sostienen que es
             posible
             reconocer o construir un significado de los eventos celestes y de las constelaciones, basándose en la
@@ -25,10 +24,19 @@
         </h3>
     </div>
 
-    <input type="text" id="nombre" placeholder="Ingresa tu nombre">
-    <input type="text" id="nombrePareja" placeholder="Ingresa el nombre de tu pareja">
+    <form id="datosNombres">
+        <input type="text" id="nombre" placeholder="Ingresa tu nombre">
+        <input type="text" id="nombrePareja" placeholder="Ingresa el nombre de tu pareja">
+        <input type="button" value="Siguiente" onclick="mostrarFormularioFechas()">
+    </form>
+    
+    <form id="datosFechas" style="display: none;">
+        <input type="text" id="fecha" placeholder="Ingresa tu fecha de nacimiento (YYYY-MM-DD):">
+        <input type="text" id="fechaPareja" placeholder="Ingresa la fecha de nacimiento de tu pareja">
+        <input type="button" value="Calcular" onclick="calcularCompatibilidad()">
+    </form>
+
+    <div id="mensajeCompatibilidad" style="display: none;"></div>
 
     <script src="./main.js"></script>
-</body>
-
 </html>
