@@ -101,24 +101,20 @@ function mostrarMensajeSaludo() {
     const nombrePareja = document.getElementById("nombrePareja").value;
     const errorNombres = document.getElementById("errorNombres");
 
-    // Verificar que se hayan ingresado nombres
     if (nombre.trim() === "" || nombrePareja.trim() === "") {
         errorNombres.textContent = "Por favor, ingresa tus nombres y el nombre de tu pareja.";
         errorNombres.style.display = "flex";
         return;
     }
 
-    // Ocultar el formulario de nombres y mostrar el mensaje de saludo
     document.getElementById("datosNombres").style.display = "none";
     document.getElementById("mensajeSaludo").style.display = "flex";
-    document.getElementById("btnSiguienteSaludo").style.display="flex";
+    document.getElementById("btnSiguienteSaludo").style.display = "flex";
 
-    // Llamar a la función de saludo
     signosCompatibles.saludoUsuario(nombre, nombrePareja);
 }
 
 function mostrarFormularioFechas() {
-    // Ocultar el mensaje de saludo y mostrar el formulario de fechas
     document.getElementById("mensajeCompatibilidad").style.display = "none";
     document.getElementById("btnSiguienteSaludo").style.display = "none";
     document.getElementById("datosFechas").style.display = "flex";
@@ -175,4 +171,20 @@ function calcularCompatibilidad() {
     document.getElementById("mensajeCompatibilidad").textContent = mensajeCompatibilidad;
     datosFechas.style.display = "none";
     document.getElementById("mensajeCompatibilidad").style.display = "flex";
+    guardarDatosEnLocalStorage(nombre, nombrePareja, fechaUsuario, fechaPareja);
+}
+
+function guardarDatosEnLocalStorage(nombre, nombrePareja, fechaUsuario, fechaPareja) {
+    const datos = {
+        nombre: nombre,
+        nombrePareja: nombrePareja,
+        fechaUsuario: fechaUsuario,
+        fechaPareja: fechaPareja
+    };
+    localStorage.setItem('datosCompatibilidad', JSON.stringify(datos));
+}
+
+function obtenerDatosDelLocalStorage() {
+    const datos = JSON.parse(localStorage.getItem('datosCompatibilidad'));
+    return datos;
 }
