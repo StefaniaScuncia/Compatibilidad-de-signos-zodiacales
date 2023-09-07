@@ -27,16 +27,24 @@
     <form id="datosNombres">
         <input type="text" id="nombre" placeholder="Ingresa tu nombre">
         <input type="text" id="nombrePareja" placeholder="Ingresa el nombre de tu pareja">
-        <input type="button" value="Siguiente" onclick="mostrarFormularioFechas()">
+        <input type="button" value="Siguiente" onclick="mostrarMensajeSaludo()">
+        <div id="errorNombres" class="error" style="display: none;"></div>
     </form>
-    
+
     <form id="datosFechas" style="display: none;">
         <input type="text" id="fecha" placeholder="Ingresa tu fecha de nacimiento (YYYY-MM-DD):">
         <input type="text" id="fechaPareja" placeholder="Ingresa la fecha de nacimiento de tu pareja">
         <input type="button" value="Calcular" onclick="calcularCompatibilidad()">
+        <div id="mensaje" class="errorFecha" style="display: none;"></div>
     </form>
 
+
+    <div id="mensaje" style="display: none;"></div>
     <div id="mensajeCompatibilidad" style="display: none;"></div>
+    <div id="mensajeSaludo"></div>
+    <button id="btnSiguienteSaludo" onclick="mostrarFormularioFechas()" style="display: none;">Siguiente</button>
+    
 
     <script src="./main.js"></script>
+
 </html>

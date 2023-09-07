@@ -28,7 +28,6 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    border: 1.4px solid black;
     border-radius: 5px;
     width: 50%;
     margin: auto;
@@ -37,6 +36,56 @@ form {
 form input {
     padding: 20px;
     margin: 20px;
+    text-align: center;
+    font-size: large;
+}
+
+#mensajeCompatibilidad {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1.4px solid black;
+    border-radius: 5px;
+    width: 50%;
+    margin: auto;
+    background-color: beige;
+    text-align: center;
+    font-size: large;
+}
+
+#btnSiguienteSaludo {
+    padding: 20px;
+    justify-content: space-around;
+    border-radius: 5px;
+    margin: auto;
+    text-align: center;
+    font-size: large;
+    margin-top: 20px;
+}
+
+#mensaje {
+    display: none;
+    padding: 20px;
+    justify-content: space-around;
+    border-radius: 5px;
+    margin: auto;
+    text-align: center;
+    font-size: large;
+    margin-top: 20px;
+    background-color: red;
+}
+
+#errorNombres {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1.4px solid black;
+    border-radius: 5px;
+    width: 50%;
+    margin: auto;
+    background-color: red;
     text-align: center;
     font-size: large;
 }
