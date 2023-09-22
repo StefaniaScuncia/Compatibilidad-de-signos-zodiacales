@@ -14,9 +14,9 @@ class SignosCompatibles {
 
     constructor() {
         this.compatibilidades = {
-            capricornio: ["cancer", "virgo", "escorpio"],
+            capricornio: ["tauro", "virgo", "escorpio"],
             leo: ["libra", "sagitario", "aries"],
-            cancer: ["virgo", "escorpio", "capricornio"],
+            cancer: ["virgo", "escorpio", "tauro"],
             aries: ["geminis", "acuario", "leo", "tauro"],
             libra: ["leo", "sagitario"],
             piscis: ["geminis", "sagitario", "leo"],
@@ -36,6 +36,9 @@ class SignosCompatibles {
     }
 
     obtenerSignoPorFecha(fecha) {
+        const inputFecha = document.getElementById("fecha");
+        const fecha = inputFecha.value;
+
         const fechaNacimiento = new Date(fecha);
         const mes = fechaNacimiento.getMonth() + 1;
         const dia = fechaNacimiento.getDate();
@@ -59,16 +62,6 @@ class SignosCompatibles {
     verificarCompatibilidad(signoUsuario, signoPareja) {
         return this.compatibilidades[signoUsuario]?.includes(signoPareja) || false;
     }
-
-    validarFecha(fecha) {
-        const fechaRegex = /^\d{4}-\d{2}-\d{2}$/;
-        if (!fechaRegex.test(fecha)) {
-            return false;
-        }
-
-        const fechaNacimiento = new Date(fecha);
-        return !isNaN(fechaNacimiento.getDate());
-    }
 }
 
 const signosCompatibles = new SignosCompatibles();
@@ -79,6 +72,8 @@ function mostrarMensajeSaludo() {
     const errorNombres = document.getElementById("errorNombres");
 
     if (nombre.trim() === "" || nombrePareja.trim() === "") {
+        //errorNombres.textContent = "Por favor, ingresa tus nombres y el nombre de tu pareja.";
+        //errorNombres.style.display = "flex";
         Swal.fire({
             title: 'Por favor, ingresa tu nombre y el nombre de tu pareja.',
             showClass: {
@@ -120,6 +115,8 @@ function calcularCompatibilidad() {
 
 
     if (!nombre || !nombrePareja || !fechaUsuario || !fechaPareja) {
+        //mensajeElement.textContent = "Por favor, completa todos los campos.";
+        //mensajeElement.style.display = "flex";
         Swal.fire({
             title: 'Por favor, completa todos los campos.',
             showClass: {

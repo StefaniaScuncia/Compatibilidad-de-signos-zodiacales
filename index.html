@@ -10,6 +10,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Indie+Flower&family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,700&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="main.css">
 </head>
 
@@ -27,24 +29,36 @@
     <form id="datosNombres">
         <input type="text" id="nombre" placeholder="Ingresa tu nombre">
         <input type="text" id="nombrePareja" placeholder="Ingresa el nombre de tu pareja">
-        <input type="button" value="Siguiente" onclick="mostrarMensajeSaludo()">
+        <input type="button" value="Siguiente" id="botoncito" onclick="mostrarMensajeSaludo()">
         <div id="errorNombres" class="error" style="display: none;"></div>
     </form>
 
     <form id="datosFechas" style="display: none;">
-        <input type="text" id="fecha" placeholder="Ingresa tu fecha de nacimiento (YYYY-MM-DD):">
-        <input type="text" id="fechaPareja" placeholder="Ingresa la fecha de nacimiento de tu pareja">
+        <h4>Ingresa tu fecha de nacimiento</h4>
+        <input type="date" id="fecha" placeholder="Ingresa tu fecha de nacimiento">
+        <h4>Ingresa la fecha de nacimiento de tu pareja</h4>
+        <input type="date" id="fechaPareja" placeholder="Ingresa la fecha de nacimiento de tu pareja">
         <input type="button" value="Calcular" onclick="calcularCompatibilidad()">
         <div id="mensaje" class="errorFecha" style="display: none;"></div>
     </form>
+
+   <!-- <form id="datosFechas" style="display: none;">
+        <input type="text" id="fecha" placeholder="Ingresa tu fecha de nacimiento (YYYY-MM-DD):">
+        
+        <input type="text" id="fechaPareja" placeholder="Ingresa la fecha de nacimiento de tu pareja">
+        <input type="button" value="Calcular" onclick="calcularCompatibilidad()">
+        <div id="mensaje" class="errorFecha" style="display: none;"></div>
+    </form>-->
 
 
     <div id="mensaje" style="display: none;"></div>
     <div id="mensajeCompatibilidad" style="display: none;"></div>
     <div id="mensajeSaludo"></div>
     <button id="btnSiguienteSaludo" onclick="mostrarFormularioFechas()" style="display: none;">Siguiente</button>
-    
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
     <script src="./main.js"></script>
 
 </html>
