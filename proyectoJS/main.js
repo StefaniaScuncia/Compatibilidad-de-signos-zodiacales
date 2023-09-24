@@ -12,24 +12,6 @@ class SignosCompatibles {
 
         return [];
     }
-    cargarDatosDesdeJSON() {
-        return new Promise((resolve, reject) => {
-            fetch('./datos/datos.json') 
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('No se pudo cargar el archivo JSON');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    this.compatibilidades = data.compatibilidades;
-                    resolve();
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-        });
-    }
 
     constructor() {
         this.compatibilidades = {
@@ -101,12 +83,12 @@ function mostrarMensajeSaludo() {
         Swal.fire({
             title: 'Por favor, ingresa tu nombre y el nombre de tu pareja.',
             showClass: {
-              popup: 'animate__animated animate__fadeInDown'
+                popup: 'animate__animated animate__fadeInDown'
             },
             hideClass: {
-              popup: 'animate__animated animate__fadeOutUp'
+                popup: 'animate__animated animate__fadeOutUp'
             }
-          })
+        })
         return;
     }
 
@@ -143,12 +125,12 @@ function calcularCompatibilidad() {
         Swal.fire({
             title: 'Por favor, completa todos los campos.',
             showClass: {
-              popup: 'animate__animated animate__fadeInDown'
+                popup: 'animate__animated animate__fadeInDown'
             },
             hideClass: {
-              popup: 'animate__animated animate__fadeOutUp'
+                popup: 'animate__animated animate__fadeOutUp'
             }
-          })
+        })
         return;
     }
 
@@ -181,6 +163,19 @@ function calcularCompatibilidad() {
     datosFechas.style.display = "none";
     document.getElementById("mensajeCompatibilidad").style.display = "flex";
     guardarDatosEnLocalStorage(nombre, nombrePareja, fechaUsuario, fechaPareja);
+}
+
+const cargarDatosDesdeJSON = async () => {
+    return await fetch('./datos/datos.json')
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            return data
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }
 
 function guardarDatosEnLocalStorage(nombre, nombrePareja, fechaUsuario, fechaPareja) {
