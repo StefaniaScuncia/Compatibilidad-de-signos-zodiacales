@@ -1,3 +1,4 @@
+
 class SignosCompatibles {
     findCompatibilidad(signoBuscado) {
         const compatibilidadEncontrada = Object.entries(this.compatibilidades).find(([signo, compatibles]) => {
@@ -11,12 +12,30 @@ class SignosCompatibles {
 
         return [];
     }
+    cargarDatosDesdeJSON() {
+        return new Promise((resolve, reject) => {
+            fetch('./datos/datos.json') 
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el archivo JSON');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    this.compatibilidades = data.compatibilidades;
+                    resolve();
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    }
 
     constructor() {
         this.compatibilidades = {
-            capricornio: ["cancer", "virgo", "escorpio"],
+            capricornio: ["tauro", "virgo", "escorpio"],
             leo: ["libra", "sagitario", "aries"],
-            cancer: ["virgo", "escorpio", "capricornio"],
+            cancer: ["virgo", "escorpio", "tauro"],
             aries: ["geminis", "acuario", "leo", "tauro"],
             libra: ["leo", "sagitario"],
             piscis: ["geminis", "sagitario", "leo"],
@@ -97,6 +116,7 @@ function mostrarMensajeSaludo() {
 
     signosCompatibles.saludoUsuario(nombre, nombrePareja);
 }
+
 
 function mostrarFormularioFechas() {
     document.getElementById("mensajeCompatibilidad").style.display = "none";

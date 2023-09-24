@@ -1,0 +1,16 @@
+{
+    "compatibilidades": {
+        "capricornio": ["cancer", "virgo", "escorpio"],
+        "leo": ["libra", "sagitario", "aries"],
+        "cancer": ["virgo", "escorpio", "capricornio"],
+        "aries": ["geminis", "acuario", "leo", "tauro"],
+        "libra": ["leo", "sagitario"],
+        "piscis": ["geminis", "sagitario", "leo"],
+        "tauro": ["capricornio", "piscis", "virgo"],
+        "virgo": ["cancer", "tauro", "capricornio"],
+        "geminis": ["acuario", "libra"],
+        "acuario": ["cancer", "geminis"],
+        "escorpio": ["cancer", "piscis", "capricornio"],
+        "sagitario": ["acuario", "libra"]
+    }
+}
